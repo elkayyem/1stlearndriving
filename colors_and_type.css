@@ -1,0 +1,172 @@
+/* ============================================================
+   1st Learn Driving School — Foundations
+   Colors, typography and base tokens.
+   ============================================================ */
+
+/* ---- Webfont ---- */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+:root {
+  /* ---------- Brand ---------- */
+  --brand-red:        rgb(231, 0, 11);   /* Primary CTA / accent */
+  --brand-red-strong: rgb(193, 0, 7);    /* Pressed / strong text */
+  --brand-red-soft:   rgb(254, 242, 242);/* Brand-tinted surfaces */
+  --brand-red-border: rgb(255, 201, 201);/* Soft red borders */
+
+  /* ---------- Neutrals ---------- */
+  --fg-1:        rgb(10, 10, 10);        /* Primary text, headings */
+  --fg-2:        rgb(113, 113, 130);     /* Body, muted text */
+  --fg-3:        rgb(209, 213, 220);     /* Disabled / placeholder */
+  --bg:          rgb(255, 255, 255);     /* Page background */
+  --bg-muted:    rgb(249, 250, 251);     /* Alt section background */
+  --bg-subtle:   rgb(243, 243, 245);     /* Subtle surface */
+  --bg-input:    rgb(236, 236, 240);     /* Input chip / avatar bg */
+  --border-1:    rgba(0, 0, 0, 0.10);    /* Default hairline */
+  --border-2:    rgb(229, 231, 235);     /* Card borders */
+
+  /* ---------- Semantic accents (icon tiles) ---------- */
+  --success:        rgb(0, 166, 62);
+  --success-soft:   rgb(220, 252, 231);
+  --success-bg:     rgb(240, 253, 244);
+
+  --warning:        rgb(208, 135, 0);    /* gold strong */
+  --warning-soft:   rgb(240, 177, 0);    /* gold (stars) */
+  --warning-bg:     rgb(254, 252, 232);
+
+  --info:           rgb(21, 93, 252);
+  --info-bg:        rgb(239, 246, 255);
+
+  --indigo:         rgb(79, 57, 246);
+  --indigo-bg:      rgb(238, 242, 255);
+
+  --purple:         rgb(152, 16, 250);
+  --purple-bg:      rgb(250, 245, 255);
+
+  /* ---------- Type ---------- */
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  --fs-display:  60px;   /* Hero H1 */
+  --fs-h2:       36px;   /* Section title */
+  --fs-h3:       24px;   /* Card stat / sub-section */
+  --fs-h4:       18px;   /* Feature title, lead body */
+  --fs-body:     16px;   /* Body */
+  --fs-sm:       14px;   /* Small text, nav */
+  --fs-xs:       12px;   /* Badge / pill */
+
+  --lh-display:  60px;
+  --lh-h2:       40px;
+  --lh-h3:       32px;
+  --lh-h4:       28px;
+  --lh-body:     24px;
+  --lh-sm:       20px;
+  --lh-xs:       16px;
+
+  --tracking-display: -1.5px;
+
+  --fw-regular: 400;
+  --fw-medium:  500;
+  --fw-semibold: 600;
+  --fw-bold:    700;
+
+  /* ---------- Spacing scale (4-based) ---------- */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  24px;
+  --space-6:  32px;
+  --space-7:  48px;
+  --space-8:  64px;
+  --space-9:  80px;
+  --space-10: 96px;
+
+  /* ---------- Radii ---------- */
+  --r-sm:    8px;   /* Buttons, pills, badges */
+  --r-md:    10px;  /* Icon tiles */
+  --r-lg:    14px;  /* Cards */
+  --r-xl:    16px;  /* Hero media */
+  --r-full:  9999px;/* Avatars */
+
+  /* ---------- Elevation ---------- */
+  --shadow-1: 0 1px 2px -1px rgba(0,0,0,0.10), 0 1px 3px 0 rgba(0,0,0,0.10);     /* default card */
+  --shadow-2: 0 4px 6px -4px rgba(0,0,0,0.10), 0 10px 15px -3px rgba(0,0,0,0.10);/* floating card */
+  --shadow-3: 0 25px 50px -12px rgba(0,0,0,0.25);                                /* hero media */
+
+  /* ---------- Layout ---------- */
+  --container:    1120px;
+  --container-pad: 32px;
+  --nav-height:   64px;
+}
+
+/* ---------- Base ---------- */
+html, body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg-1);
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+* { box-sizing: border-box; }
+
+/* ---------- Semantic typography ---------- */
+.h-display {
+  font-size: var(--fs-display);
+  line-height: var(--lh-display);
+  letter-spacing: var(--tracking-display);
+  font-weight: var(--fw-medium);
+  color: var(--fg-1);
+  margin: 0;
+}
+h1, .h1 {
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2);
+  font-weight: var(--fw-medium);
+  color: var(--fg-1);
+  margin: 0;
+}
+h2, .h2 {
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2);
+  font-weight: var(--fw-medium);
+  color: var(--fg-1);
+  margin: 0;
+}
+h3, .h3 {
+  font-size: var(--fs-h3);
+  line-height: var(--lh-h3);
+  font-weight: var(--fw-bold);
+  color: var(--fg-1);
+  margin: 0;
+}
+h4, .h4 {
+  font-size: var(--fs-h4);
+  line-height: var(--lh-h4);
+  font-weight: var(--fw-bold);
+  color: var(--fg-1);
+  margin: 0;
+}
+p, .body {
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--fg-2);
+  margin: 0;
+}
+.lead {
+  font-size: var(--fs-h4);
+  line-height: var(--lh-h4);
+  color: var(--fg-2);
+}
+.small {
+  font-size: var(--fs-sm);
+  line-height: var(--lh-sm);
+  color: var(--fg-2);
+}
+.eyebrow {
+  font-size: var(--fs-xs);
+  line-height: var(--lh-xs);
+  font-weight: var(--fw-medium);
+  color: var(--brand-red-strong);
+}
