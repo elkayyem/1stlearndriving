@@ -330,7 +330,7 @@ img { max-width: 100%; }
    Pricing cards
    ============================================================ */
 .pricing-cards {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
   align-items: stretch; margin-top: 60px;
 }
 .price-card {
