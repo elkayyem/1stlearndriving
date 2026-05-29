@@ -245,17 +245,14 @@ img { max-width: 100%; }
   box-shadow: var(--shadow-3);
   background: url("assets/hero-instructor-student.jpg") center / cover no-repeat;
 }
-.hero-trust,
-.hero-vehicle {
-  position: absolute; width: auto;
+.hero-trust {
+  position: absolute; width: auto; right: 8px; bottom: 8px;
   background: #fff; border-radius: var(--r-md); padding: 6px 10px;
   border: 1px solid var(--border-1); box-shadow: var(--shadow-2);
   display: inline-flex; gap: 8px; align-items: center;
 }
-.hero-vehicle { left: -16px; top: 8px; }
-.hero-trust   { right: 8px;  bottom: 8px; }
-.hero-trust .tile, .hero-vehicle .tile { width: 26px; height: 26px; border-radius: 7px; }
-.hero-trust .tile svg, .hero-vehicle .tile svg { width: 15px; height: 15px; }
+.hero-trust .tile { width: 26px; height: 26px; border-radius: 7px; }
+.hero-trust .tile svg { width: 15px; height: 15px; }
 .hero-rating {
   position: absolute; top: 0; right: 0;
   background: #fff; border-radius: var(--r-lg); padding: 12px 16px;
@@ -310,7 +307,6 @@ img { max-width: 100%; }
   .stat-strip { grid-template-columns: repeat(2, 1fr); gap: 20px; }
   .journey { grid-template-columns: 1fr; }
   .hero-trust { right: 0; }
-  .hero-vehicle { left: 0; }
   /* On phones, move the trust-pill eyebrow below the hero title */
   .hero-copy .hero-title  { order: 1; }
   .hero-copy .hero-eyebrow { order: 2; }
@@ -366,6 +362,8 @@ img { max-width: 100%; }
 }
 @media (max-width: 860px) {
   .adi-card { grid-template-columns: 1fr; gap: 22px; padding: 26px; }
+  /* Centre the ADI Pass Plus title once the card stacks */
+  .adi-card__main .eyebrow-line { align-self: center; text-align: center; }
 }
 @media (max-width: 560px) {
   .pricing-cards { grid-template-columns: 1fr; }
