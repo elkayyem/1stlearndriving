@@ -99,7 +99,9 @@
   }
 
   /* ---------- Smooth anchor scroll + close mobile menu ---------- */
-  var navHeight = 64;
+  var navHeight = parseInt(
+    getComputedStyle(document.documentElement).getPropertyValue("--nav-height"), 10
+  ) || 64;
   document.querySelectorAll('a[href^="#"]').forEach(function (link) {
     link.addEventListener("click", function (e) {
       var id = link.getAttribute("href");
@@ -134,16 +136,31 @@
   onSpy();
   window.addEventListener("scroll", onSpy, { passive: true });
 
-  /* ---------- Contact form (demo submit) ---------- */
+  /* ---------- Contact form → email to Jason ----------
+     Static sites can't send mail server-side, so we compose the message
+     and hand it to the visitor's email app addressed to Jason's inbox.    */
+  var CONTACT_EMAIL = "Jason@1stlearndriving.co.uk";
   var form = document.getElementById("contactForm");
   var submit = document.getElementById("contactSubmit");
   if (form && submit) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-      submit.textContent = "Message sent — Jason will be in touch ✓";
+      var data = new FormData(form);
+      var get = function (k) { return (data.get(k) || "").toString().trim(); };
+      var name = get("name"), email = get("email"),
+          phone = get("phone"), message = get("message");
+      var subject = "Lesson enquiry" + (name ? " from " + name : "");
+      var body =
+        "Name: " + name + "\n" +
+        "Email: " + email + "\n" +
+        "Phone: " + phone + "\n\n" +
+        "Message:\n" + message + "\n";
+      window.location.href = "mailto:" + CONTACT_EMAIL +
+        "?subject=" + encodeURIComponent(subject) +
+        "&body=" + encodeURIComponent(body);
+      submit.textContent = "Opening your email app… ✓";
       submit.disabled = true;
       setTimeout(function () {
-        form.reset();
         submit.textContent = "Send Message";
         submit.disabled = false;
       }, 3800);

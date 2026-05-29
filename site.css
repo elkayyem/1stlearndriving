@@ -94,6 +94,7 @@ img { max-width: 100%; }
   transition: color 150ms ease-out;
 }
 .nav__phone:hover { color: var(--brand-red); }
+.nav__menu { display: flex; align-items: center; gap: 24px; }
 .nav__toggle { display: none; }
 
 /* ---------- Buttons (anchor + button) ---------- */
@@ -181,7 +182,8 @@ img { max-width: 100%; }
   font-size: 13px; font-weight: 600; letter-spacing: 0.08em;
   text-transform: uppercase; color: var(--brand-red);
 }
-.eyebrow-line::before { content: ""; width: 26px; height: 2px; background: var(--brand-red); border-radius: 2px; }
+.eyebrow-line::before,
+.eyebrow-line::after { content: ""; width: 26px; height: 2px; background: var(--brand-red); border-radius: 2px; }
 
 /* ============================================================
    Responsive
@@ -241,11 +243,13 @@ img { max-width: 100%; }
   background: url("assets/hero-instructor-student.jpg") center / cover no-repeat;
 }
 .hero-trust {
-  position: absolute; left: -16px; bottom: 8px; width: 252px;
-  background: #fff; border-radius: var(--r-lg); padding: 16px;
+  position: absolute; left: -16px; bottom: 8px; width: auto;
+  background: #fff; border-radius: var(--r-md); padding: 6px 10px;
   border: 1px solid var(--border-1); box-shadow: var(--shadow-2);
-  display: flex; gap: 12px; align-items: center;
+  display: inline-flex; gap: 8px; align-items: center;
 }
+.hero-trust .tile { width: 26px; height: 26px; border-radius: 7px; }
+.hero-trust .tile svg { width: 15px; height: 15px; }
 .hero-rating {
   position: absolute; top: 0; right: 0;
   background: #fff; border-radius: var(--r-lg); padding: 12px 16px;
@@ -267,7 +271,7 @@ img { max-width: 100%; }
 .stat-strip {
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
 }
-.stat-strip__num { font-size: 34px; line-height: 38px; font-weight: 700; color: var(--fg-1); }
+.stat-strip__num { font-size: clamp(26px, 2.4vw, 34px); line-height: 38px; font-weight: 700; color: var(--fg-1); white-space: nowrap; }
 
 /* ============================================================
    Journey steps
@@ -299,7 +303,13 @@ img { max-width: 100%; }
 @media (max-width: 560px) {
   .stat-strip { grid-template-columns: repeat(2, 1fr); gap: 20px; }
   .journey { grid-template-columns: 1fr; }
-  .hero-trust { width: 220px; left: 0; }
+  .hero-trust { width: auto; left: 0; }
+  /* On phones, move the trust-pill eyebrow below the hero title */
+  .hero-copy .hero-title  { order: 1; }
+  .hero-copy .hero-eyebrow { order: 2; }
+  .hero-copy .lead         { order: 3; }
+  .hero-copy .hero-cta     { order: 4; }
+  .hero-copy .hero-stats   { order: 5; }
 }
 
 /* ============================================================
