@@ -259,6 +259,35 @@ img { max-width: 100%; }
   border: 1px solid var(--border-1); box-shadow: var(--shadow-2);
 }
 
+/* ============================================================
+   Full-width hero banner (branded image with baked-in copy)
+   ============================================================ */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.hero-banner-section { position: relative; }
+.hero-banner-wrap {
+  position: relative; width: 100%; line-height: 0; background: #1a0d0e;
+}
+.hero-banner-img { display: block; width: 100%; height: auto; }
+/* Transparent links sitting over the banner's baked-in buttons,
+   sized as a percentage of the image so they scale with it. */
+.hero-hotspot { position: absolute; display: block; z-index: 2; border-radius: var(--r-md); }
+.hero-hotspot:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+/* Desktop banner (assets/hero-banner.jpg ~ 1400x316) */
+.hero-hotspot--book     { left: 1.3%;  top: 85.5%; width: 18.8%; height: 13%; }
+.hero-hotspot--packages { left: 20.8%; top: 85.5%; width: 14.6%; height: 13%; }
+
+.hero-stats-band { padding-top: 44px; padding-bottom: 4px; }
+
+@media (max-width: 760px) {
+  /* Mobile banner (assets/hero-banner-mobile.jpg ~ 486x206) — buttons stacked */
+  .hero-hotspot--book     { left: 6%;   top: 64%;   width: 33%; height: 14%; }
+  .hero-hotspot--packages { left: 5.5%; top: 78.5%; width: 33%; height: 15%; }
+  .hero-stats-band { padding-top: 30px; }
+}
+
 /* ---- Hero eyebrow pill ---- */
 .pagehead__eyebrow {
   display: inline-flex; align-items: center; gap: 6px;
