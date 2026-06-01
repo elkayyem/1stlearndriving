@@ -233,31 +233,39 @@ img { max-width: 100%; }
 .tile svg { width: 22px; height: 22px; }
 
 /* ============================================================
-   Hero
+   Hero — full-width car banner
    ============================================================ */
-.hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 56px; align-items: center; }
-/* min-width:0 stops the counter numbers from widening the grid tracks,
-   so the hero image stays put while the stats animate. */
-.hero-copy, .hero-media { min-width: 0; }
-.hero-media { position: relative; padding: 24px 24px 40px 0; }
-.hero-photo {
-  width: 100%; aspect-ratio: 4 / 3; border-radius: var(--r-xl);
-  box-shadow: var(--shadow-3);
-  background: url("assets/hero-instructor-student.jpg") center / cover no-repeat;
+.hero-banner { position: relative; isolation: isolate; }
+/* The photo spans the full width and scales with the viewport. */
+.hero-banner__bg {
+  position: absolute; inset: 0; z-index: -2;
+  background: url("assets/car-banner.png") center / cover no-repeat;
 }
-.hero-trust {
-  position: absolute; width: auto; right: 8px; bottom: 8px;
-  background: #fff; border-radius: var(--r-md); padding: 6px 10px;
-  border: 1px solid var(--border-1); box-shadow: var(--shadow-2);
-  display: inline-flex; gap: 8px; align-items: center;
+/* Two stacked gradients:
+   1) left-to-right darkening so the headline stays legible over the car;
+   2) a bottom fade into the next section's muted background for a
+      seamless transition. */
+.hero-banner__scrim {
+  position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    linear-gradient(105deg, rgba(10,12,16,0.86) 0%, rgba(10,12,16,0.58) 42%, rgba(10,12,16,0.18) 72%, rgba(10,12,16,0.05) 100%),
+    linear-gradient(to bottom, rgba(10,12,16,0.25) 0%, rgba(10,12,16,0) 24%, rgba(10,12,16,0) 64%, var(--bg-muted) 100%);
 }
-.hero-trust .tile { width: 26px; height: 26px; border-radius: 7px; }
-.hero-trust .tile svg { width: 15px; height: 15px; }
-.hero-rating {
-  position: absolute; top: 0; right: 0;
-  background: #fff; border-radius: var(--r-lg); padding: 12px 16px;
-  border: 1px solid var(--border-1); box-shadow: var(--shadow-2);
+.hero-banner__inner {
+  min-height: clamp(440px, 58vh, 600px);
+  display: flex; align-items: center;
+  padding-top: 104px; padding-bottom: 132px;
 }
+/* Text sits on the darker left side and turns white for contrast. */
+.hero-banner .hero-copy { max-width: 600px; color: #fff; }
+.hero-banner .hero-copy .h-display,
+.hero-banner .hero-copy .lead { color: #fff; }
+.hero-banner .hero-copy .lead { color: rgba(255,255,255,0.92); }
+.hero-banner .stat-strip__num { color: #fff; }
+
+/* min-width:0 stops the counter numbers from widening the layout
+   while the stats animate. */
+.hero-copy { min-width: 0; }
 
 /* ---- Hero eyebrow pill ---- */
 .pagehead__eyebrow {
@@ -298,15 +306,20 @@ img { max-width: 100%; }
    Additional responsive
    ============================================================ */
 @media (max-width: 860px) {
-  .hero-grid { grid-template-columns: 1fr; gap: 48px; }
-  .hero-media { padding: 16px 8px 32px 0; max-width: 520px; }
+  .hero-banner__inner { padding-top: 96px; padding-bottom: 112px; }
   .journey { grid-template-columns: repeat(2, 1fr); }
   .contact-grid { grid-template-columns: 1fr; gap: 28px; }
 }
 @media (max-width: 560px) {
+  /* On narrow phones the text fills the width, so darken the whole
+     image evenly (instead of only the left) to keep it readable. */
+  .hero-banner__scrim {
+    background:
+      linear-gradient(180deg, rgba(10,12,16,0.55) 0%, rgba(10,12,16,0.45) 40%, rgba(10,12,16,0.35) 70%, var(--bg-muted) 100%);
+  }
+  .hero-banner__inner { min-height: 0; padding-top: 88px; padding-bottom: 96px; }
   .stat-strip { grid-template-columns: repeat(2, 1fr); gap: 20px; }
   .journey { grid-template-columns: 1fr; }
-  .hero-trust { right: 0; }
   /* On phones, move the trust-pill eyebrow below the hero title */
   .hero-copy .hero-title  { order: 1; }
   .hero-copy .hero-eyebrow { order: 2; }
