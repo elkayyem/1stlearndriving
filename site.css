@@ -343,7 +343,7 @@ img { max-width: 100%; }
   /* Slimmer header on phones (25% shorter). Overriding the token keeps
      the sticky offset, mobile-menu drop point and hero pull-up in sync. */
   :root { --nav-height: 66px; }
-  .nav__brand img { height: 56px !important; }
+  .nav__brand img { height: 67px !important; }
 
   /* On phones use the portrait-friendly crop, shown at full width as a
      top band. The copy then sits below it on a dark panel that blends
