@@ -62,11 +62,19 @@ img { max-width: 100%; }
 .nav {
   position: sticky; top: 0; z-index: 50;
   height: var(--nav-height);
-  background: rgba(255,255,255,0.95);
-  border-bottom: 1px solid var(--border-1);
-  transition: box-shadow 200ms ease-out, background 200ms ease-out;
+  /* Translucent "glass" bar so the banner shows through at the top of
+     the page; a blur keeps overlaid text crisp against busy imagery. */
+  background: rgba(16,24,40,0.30);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  transition: box-shadow 200ms ease-out, background 200ms ease-out, border-color 200ms ease-out;
 }
-.nav.is-scrolled { box-shadow: 0 1px 0 var(--border-1), 0 8px 24px -16px rgba(0,0,0,0.28); }
+.nav.is-scrolled {
+  background: rgba(16,24,40,0.62);
+  border-bottom-color: rgba(255,255,255,0.10);
+  box-shadow: 0 8px 24px -16px rgba(0,0,0,0.45);
+}
 .nav__inner {
   height: 100%; max-width: var(--container); margin: 0 auto;
   padding: 0 24px;
@@ -75,7 +83,7 @@ img { max-width: 100%; }
 .nav__links { display: flex; align-items: center; gap: 30px; }
 .nav__link {
   position: relative;
-  font-size: 14px; font-weight: 500; color: var(--fg-1);
+  font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.90);
   text-decoration: none; padding: 6px 0;
   transition: color 150ms ease-out;
 }
@@ -90,10 +98,10 @@ img { max-width: 100%; }
 .nav__link.is-active::after { transform: scaleX(1); }
 .nav__phone {
   display: inline-flex; gap: 6px; align-items: center;
-  font-size: 14px; color: var(--fg-1); text-decoration: none; white-space: nowrap;
+  font-size: 14px; color: rgba(255,255,255,0.90); text-decoration: none; white-space: nowrap;
   transition: color 150ms ease-out;
 }
-.nav__phone:hover { color: var(--brand-red); }
+.nav__phone:hover { color: #fff; }
 .nav__menu { display: flex; align-items: center; gap: 24px; }
 .nav__toggle { display: none; }
 
@@ -202,8 +210,11 @@ img { max-width: 100%; }
   .nav__menu.is-open {
     display: flex; flex-direction: column; align-items: flex-start; gap: 18px;
     position: absolute; top: var(--nav-height); left: 0; right: 0;
-    background: #fff; border-bottom: 1px solid var(--border-1);
-    padding: 22px 24px; box-shadow: var(--shadow-2);
+    background: rgba(16,24,40,0.97);
+    -webkit-backdrop-filter: blur(14px);
+            backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255,255,255,0.10);
+    padding: 22px 24px; box-shadow: 0 16px 32px -20px rgba(0,0,0,0.6);
   }
   .nav__menu.is-open .nav__links {
     flex-direction: column; align-items: flex-start; gap: 18px; width: 100%;
@@ -212,7 +223,8 @@ img { max-width: 100%; }
   .nav__toggle {
     display: inline-grid; place-items: center;
     width: 40px; height: 40px; border-radius: var(--r-sm);
-    border: 1px solid var(--border-1); background: #fff; cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.35);
+    background: rgba(255,255,255,0.12); color: #fff; cursor: pointer;
   }
 }
 @media (max-width: 620px) {
@@ -235,7 +247,9 @@ img { max-width: 100%; }
 /* ============================================================
    Hero — full-width car banner
    ============================================================ */
-.hero-banner { position: relative; isolation: isolate; }
+/* Pull the banner up under the translucent sticky nav so the photo
+   shows through the glass bar at the top of the page. */
+.hero-banner { position: relative; isolation: isolate; margin-top: calc(-1 * var(--nav-height)); }
 /* The photo spans the full width and scales with the viewport. */
 .hero-banner__bg {
   position: absolute; inset: 0; z-index: -2;
@@ -252,9 +266,9 @@ img { max-width: 100%; }
     linear-gradient(to bottom, rgba(10,12,16,0.25) 0%, rgba(10,12,16,0) 24%, rgba(10,12,16,0) 64%, var(--bg-muted) 100%);
 }
 .hero-banner__inner {
-  min-height: clamp(440px, 58vh, 600px);
+  min-height: clamp(500px, 64vh, 660px);
   display: flex; align-items: center;
-  padding-top: 104px; padding-bottom: 132px;
+  padding-top: 128px; padding-bottom: 132px;
 }
 /* Text sits on the darker left side and turns white for contrast. */
 .hero-banner .hero-copy { max-width: 600px; color: #fff; }
@@ -306,7 +320,7 @@ img { max-width: 100%; }
    Additional responsive
    ============================================================ */
 @media (max-width: 860px) {
-  .hero-banner__inner { padding-top: 96px; padding-bottom: 112px; }
+  .hero-banner__inner { padding-top: 120px; padding-bottom: 112px; }
   .journey { grid-template-columns: repeat(2, 1fr); }
   .contact-grid { grid-template-columns: 1fr; gap: 28px; }
 }
@@ -317,7 +331,7 @@ img { max-width: 100%; }
     background:
       linear-gradient(180deg, rgba(10,12,16,0.55) 0%, rgba(10,12,16,0.45) 40%, rgba(10,12,16,0.35) 70%, var(--bg-muted) 100%);
   }
-  .hero-banner__inner { min-height: 0; padding-top: 88px; padding-bottom: 96px; }
+  .hero-banner__inner { min-height: 0; padding-top: 112px; padding-bottom: 96px; }
   .stat-strip { grid-template-columns: repeat(2, 1fr); gap: 20px; }
   .journey { grid-template-columns: 1fr; }
   /* On phones, move the trust-pill eyebrow below the hero title */
