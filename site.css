@@ -340,25 +340,29 @@ img { max-width: 100%; }
   .contact-grid { grid-template-columns: 1fr; gap: 28px; }
 }
 @media (max-width: 560px) {
+  /* Slimmer header on phones (25% shorter). Overriding the token keeps
+     the sticky offset, mobile-menu drop point and hero pull-up in sync. */
+  :root { --nav-height: 66px; }
+  .nav__brand img { height: 56px !important; }
+
   /* On phones use the portrait-friendly crop, shown at full width as a
-     top band (it is ~0.865:1, so its height is ~116vw). The copy then
-     sits below it on a dark panel that blends from the photo's lower
-     edge and fades into the next section. */
+     top band. The copy then sits below it on a dark panel that blends
+     from the photo's lower edge and fades into the next section. */
   .hero-banner__bg {
-    background-image: url("assets/car-banner-cropped.png");
+    background-image: url("assets/car-banner-mobile.png");
     background-size: 100% auto;
     background-position: top center;
   }
   .hero-banner__scrim {
     background:
       linear-gradient(180deg,
-        rgba(20,16,13,0) 88vw,
-        rgba(20,16,13,0.55) 104vw,
-        rgba(20,16,13,0.92) 116vw,
+        rgba(20,16,13,0) 80vw,
+        rgba(20,16,13,0.5) 88vw,
+        rgba(20,16,13,0.92) 93vw,
         rgba(20,16,13,0.95) 88%,
         var(--bg-muted) 100%);
   }
-  .hero-banner__inner { min-height: 0; padding-top: calc(116vw + 18px); padding-bottom: 84px; }
+  .hero-banner__inner { min-height: 0; padding-top: calc(93vw + 16px); padding-bottom: 84px; }
   .stat-strip { grid-template-columns: repeat(2, 1fr); gap: 20px; }
   .journey { grid-template-columns: 1fr; }
   /* On phones, move the trust-pill eyebrow below the hero title */
